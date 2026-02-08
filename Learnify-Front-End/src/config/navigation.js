@@ -1,0 +1,103 @@
+/**
+ * User Navigation Items
+ */
+export const USER_NAV_ITEMS = [
+  {
+    label: "Beranda",
+    path: "/user/landing",
+    requiresAuth: false,
+  },
+  {
+    label: "Kursus",
+    path: "/user/courses",
+    requiresAuth: false,
+  },
+  {
+    label: "Kemajuan",
+    path: "/user/progress",
+    requiresAuth: true,
+    children: [
+      { label: "Materi", path: "/user/progress" },
+      { label: "Ujian", path: "/user/history" },
+    ],
+  },
+  {
+    label: "Sertifikat",
+    path: "/user/certificates",
+    requiresAuth: true,
+  },
+];
+
+/**
+ * Admin Navigation Items
+ */
+export const ADMIN_NAV_ITEMS = [
+  {
+    label: "Dasbor",
+    path: "/admin/dashboard",
+  },
+  {
+    label: "Kelas",
+    path: "/admin/kelas",
+  },
+  {
+    label: "Materi",
+    path: "/admin/materi",
+  },
+  {
+    label: "Soal",
+    path: "/admin/soal",
+  },
+  {
+    label: "Hasil Ujian",
+    path: "/admin/hasil-ujian",
+  },
+  {
+    label: "Progres Pengguna",
+    path: "/admin/progress",
+  },
+  {
+    label: "Sertifikat",
+    path: "/admin/sertifikat",
+  },
+  {
+    label: "Pengguna",
+    path: "/admin/users",
+  },
+  {
+    label: "Pengaturan",
+    path: "/admin/settings",
+  },
+];
+
+/**
+ * Logo Configuration
+ */
+export const LOGO_CONFIG = {
+  light: {
+    url: "https://via.placeholder.com/40",
+    alt: "Logo LMS",
+  },
+  dark: {
+    url: "https://via.placeholder.com/40?bg=000&fg=fff",
+    alt: "Logo LMS Gelap",
+  },
+};
+
+/**
+ * Navigation Constants
+ */
+export const NAVIGATION_CONFIG = {
+  user: {
+    logo: LOGO_CONFIG.light,
+    homeLink: "/user/landing",
+    dashboardLink: "/user/dashboard",
+    items: USER_NAV_ITEMS,
+  },
+  admin: {
+    logo: LOGO_CONFIG.light,
+    homeLink: "/admin/dashboard",
+    dashboardLink: "/admin/dashboard",
+    items: ADMIN_NAV_ITEMS,
+  },
+};
