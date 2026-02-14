@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\AdminProgressController;
+use App\Http\Controllers\ChatController;
+use Illuminate\Support\Facades\Broadcast;
 
 // Public routes
 Route::post('/registrasi', [AuthController::class, 'register']);
@@ -19,6 +21,8 @@ Route::get('/kelas/public', [KelasController::class, 'publicIndex']);
 Route::get('/kelas/public/{id}', [KelasController::class, 'publicShow']);
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Broadcast::routes();
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
@@ -48,6 +52,14 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // Admin certificate list
         Route::get('/admin/sertifikat', [SertifikatController::class, 'adminIndex']);
+
+        // Admin chat
+        Route::prefix('admin/chat')->group(function () {
+            Route::get('/conversations', [ChatController::class, 'adminConversations']);
+            Route::get('/conversations/{conversationId}', [ChatController::class, 'adminMessages']);
+            Route::post('/conversations/{conversationId}/send', [ChatController::class, 'adminSend']);
+            Route::get('/unread-count', [ChatController::class, 'adminUnreadCount']);
+        });
     });
 
     // User routes
@@ -72,5 +84,11 @@ Route::middleware('auth:sanctum')->group(function () {
         // User certificates
         Route::get('/sertifikat', [SertifikatController::class, 'index']);
         Route::get('/sertifikat/{id}', [SertifikatController::class, 'show']);
+
+        // User chat
+        Route::get('/chat', [ChatController::class, 'userIndex']);
+        Route::post('/chat/send', [ChatController::class, 'userSend']);
+        Route::post('/chat/read', [ChatController::class, 'userMarkRead']);
+        Route::get('/chat/unread-count', [ChatController::class, 'userUnreadCount']);
     });
 });

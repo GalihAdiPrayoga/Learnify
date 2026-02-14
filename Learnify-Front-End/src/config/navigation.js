@@ -65,6 +65,10 @@ export const ADMIN_NAV_ITEMS = [
     path: "/admin/users",
   },
   {
+    label: "Chat",
+    path: "/admin/chat",
+  },
+  {
     label: "Pengaturan",
     path: "/admin/settings",
   },

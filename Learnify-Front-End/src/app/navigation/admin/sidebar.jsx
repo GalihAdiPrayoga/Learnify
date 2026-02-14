@@ -13,6 +13,7 @@ import {
   ChevronDown,
   Menu,
   Users,
+  MessageCircle,
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -58,10 +59,12 @@ export default function Sidebar() {
       ],
     },
     {
+      title: "Dukungan",
+      items: [{ label: "Chat", icon: MessageCircle, path: "/admin/chat" }],
+    },
+    {
       title: "Sistem",
-      items: [
-        { label: "Pengaturan", icon: Settings, path: "/admin/settings" },
-      ],
+      items: [{ label: "Pengaturan", icon: Settings, path: "/admin/settings" }],
     },
   ];
 
@@ -144,7 +147,9 @@ export default function Sidebar() {
                       {section.title}
                     </p>
                   )}
-                  {collapsed && <div className="border-t border-white/5 my-2" />}
+                  {collapsed && (
+                    <div className="border-t border-white/5 my-2" />
+                  )}
                   <Link
                     to={item.path}
                     onClick={() => {
@@ -308,18 +313,6 @@ export default function Sidebar() {
             );
           })}
         </nav>
-
-        {/* Footer branding */}
-        {!collapsed && (
-          <div className="p-4 border-t border-white/5">
-            <div className="bg-gradient-to-r from-indigo-600/10 to-purple-600/10 rounded-xl px-4 py-3 border border-indigo-500/10">
-              <p className="text-[11px] text-slate-400 font-medium">
-                Learnify LMS
-              </p>
-              <p className="text-[10px] text-slate-600 mt-0.5">v1.0.0</p>
-            </div>
-          </div>
-        )}
       </aside>
 
       {/* Overlay for mobile */}

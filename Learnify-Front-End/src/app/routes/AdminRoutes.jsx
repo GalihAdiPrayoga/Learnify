@@ -36,6 +36,7 @@ const AdminSertifikatPage = React.lazy(
 const AdminUserPage = React.lazy(
   () => import("@/features/admin/pages/UserPage"),
 );
+const ChatPage = React.lazy(() => import("@/features/admin/pages/ChatPage"));
 
 const DashboardWrapper = (props) => (
   <React.Suspense fallback={<Loading />}>
@@ -95,6 +96,11 @@ const AdminSertifikatWrapper = (props) => (
 const AdminUserWrapper = (props) => (
   <React.Suspense fallback={<Loading />}>
     <AdminUserPage {...props} />
+  </React.Suspense>
+);
+const ChatWrapper = (props) => (
+  <React.Suspense fallback={<Loading />}>
+    <ChatPage {...props} />
   </React.Suspense>
 );
 
@@ -212,6 +218,14 @@ export const AdminRoutes = [
         element: (
           <ProtectedRoute requiredRole="admin">
             <AdminUserWrapper />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "chat",
+        element: (
+          <ProtectedRoute requiredRole="admin">
+            <ChatWrapper />
           </ProtectedRoute>
         ),
       },
